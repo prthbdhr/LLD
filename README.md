@@ -8,7 +8,7 @@ This repository contains comprehensive implementations of various design pattern
 
 ## 📋 Table of Contents
 
-1. [Projects Overview](#projects-overview-) - Summary of both projects
+1. [Projects Overview](#projects-overview-) - Summary of all projects
 2. [Quick Start](#-quick-start) - Getting started guide
 3. [Project Comparison](#-project-comparison-matrix) - Side-by-side comparison
 4. [Learning Outcomes](#-learning-outcomes) - What you'll learn
@@ -55,7 +55,39 @@ A demonstration of the **Composite Design Pattern** through a hierarchical file 
 
 ---
 
-### 2. Music Player System
+### 3. Template Method Pattern - ML Model Training Pipeline
+
+**Location**: `templateMethodPattern/`
+
+A demonstration of the **Template Method Design Pattern** through a machine learning model training framework.
+
+#### What it demonstrates:
+- Template method pattern for algorithm skeletons
+- Defining fixed algorithm steps in base class
+- Allowing subclass-specific implementations
+- Avoiding code duplication in similar algorithms
+
+#### Key Components:
+- `ModelTrainer` - Abstract base class with template method
+- `NeuralNetworkTrainer` - Neural network specific implementation
+- `DecisionTreeTrainer` - Decision tree specific implementation
+
+#### Algorithm Steps:
+- Load data (common)
+- Preprocess data (common)
+- Train model (algorithm-specific)
+- Evaluate model (algorithm-specific)
+- Save model (common with optional override)
+
+#### Use Cases:
+- ML model training pipelines
+- Software test frameworks (setup-test-teardown)
+- Database operations (open-query-close)
+- File processing (open-read-process-close)
+
+---
+
+### 3. Music Player System
 
 **Location**: `musicPlayerSystem/MusicPlayerApplication/`
 
@@ -177,6 +209,7 @@ app.playAllTracksInPlaylist();
 | Pattern | Purpose | Location | Benefits |
 |---------|---------|----------|----------|
 | **Composite** | Compose objects into tree structures | composite_pattern/ | Treat parts and wholes uniformly |
+| **Template Method** | Define algorithm skeleton | templateMethodPattern/ | Code reuse, enforced structure |
 | **Singleton** | Ensure single instance | musicPlayerSystem/ | Centralized access, thread-safe |
 | **Strategy** | Encapsulate algorithms | musicPlayerSystem/ | Runtime algorithm selection |
 | **Adapter** | Unify incompatible interfaces | musicPlayerSystem/ | API integration, loose coupling |
@@ -204,6 +237,14 @@ LLD/
 │       ├── IFileSystem.java               # Component interface
 │       ├── File.java                      # Leaf component
 │       └── Folder.java                    # Composite component
+│
+├── templateMethodPattern/
+│   ├── main.java                          # Entry point
+│   ├── README.md                          # Template method pattern documentation
+│   └── trainers/
+│       ├── ModelTrainer.java              # Abstract base class
+│       ├── NeuralNetworkTrainer.java      # Neural network implementation
+│       └── DecisionTreeTrainer.java       # Decision tree implementation
 │
 └── musicPlayerSystem/
     └── MusicPlayerApplication/
@@ -300,6 +341,46 @@ docs
 - `getSize()` - Calculates total size recursively
 - `cd()` - Navigates folders
 
+### Template Method Pattern
+
+```bash
+# Navigate to LLD directory
+cd /Users/tyrant369/Tyrant369-Macbook-Air-M3/Study/Code/system_design/lld/LLD
+
+# Compile
+javac templateMethodPattern/main.java \
+       templateMethodPattern/trainers/ModelTrainer.java \
+       templateMethodPattern/trainers/NeuralNetworkTrainer.java \
+       templateMethodPattern/trainers/DecisionTreeTrainer.java
+
+# Run
+java templateMethodPattern.Main
+```
+
+**Expected Output:**
+```
+=== Neural Network Training ===
+[common] Loading data from: data/images/...
+[Common] Splitting into train/test and normalizing
+[NeuralNet] Training Neural Network for 100 epochs
+[NeuralNet] Evaluating accuracy and loss on validation set
+[NeuralNet] Serializing network weights to .h5 file
+
+=== Decision Tree Training ===
+[common] Loading data from: data/iris.csv...
+[Common] Splitting into train/test and normalizing
+[DecisionTree] Building decision tree with max_depth=5
+[DecisionTree] Computing classification report (precision/recall)
+[Common] Saving model to disk as default format
+```
+
+**What this demonstrates:**
+- Template method pattern enforces algorithm structure
+- Base class defines sequence: load → preprocess → train → evaluate → save
+- Subclasses implement algorithm-specific steps (train, evaluate)
+- Common steps reused across different model trainers
+- Optional override of default implementation (saveModel)
+
 ### Music Player System
 
 ```bash
@@ -346,6 +427,17 @@ Playing Chaiyya Chaiyya
    - `composite_pattern/filesystem/File.java` - Leaf node
    - `composite_pattern/filesystem/Folder.java` - Composite node
 
+### To understand the Template Method Pattern:
+1. Read [`templateMethodPattern/README.md`](templateMethodPattern/README.md) - Pattern explanation with diagrams
+2. Study the UML class diagram showing abstract base and concrete implementations
+3. Review the sequence diagrams showing execution flow
+4. Run the main class and observe how different trainers follow the same pipeline
+5. Examine the code:
+   - `templateMethodPattern/main.java` - Entry point with demonstrations
+   - `templateMethodPattern/trainers/ModelTrainer.java` - Abstract base class defining template
+   - `templateMethodPattern/trainers/NeuralNetworkTrainer.java` - Neural network implementation
+   - `templateMethodPattern/trainers/DecisionTreeTrainer.java` - Decision tree implementation
+
 ### To understand the Music Player System:
 1. Read [`musicPlayerSystem/MusicPlayerApplication/README.md`](musicPlayerSystem/MusicPlayerApplication/README.md) - System overview
 2. View UML diagrams in [`docs/ARCHITECTURE_DIAGRAMS.md`](musicPlayerSystem/MusicPlayerApplication/docs/ARCHITECTURE_DIAGRAMS.md)
@@ -356,6 +448,7 @@ Playing Chaiyya Chaiyya
 ### Complete Documentation Index:
 - **[DOCUMENTATION_GUIDE.md](DOCUMENTATION_GUIDE.md)** - Navigation guide for all docs
 - **[composite_pattern/README.md](composite_pattern/README.md)** - Composite pattern details
+- **[templateMethodPattern/README.md](templateMethodPattern/README.md)** - Template method pattern with UML and sequence diagrams
 - **[musicPlayerSystem/MusicPlayerApplication/README.md](musicPlayerSystem/MusicPlayerApplication/README.md)** - Music player system
 - **[musicPlayerSystem/MusicPlayerApplication/docs/ARCHITECTURE_DIAGRAMS.md](musicPlayerSystem/MusicPlayerApplication/docs/ARCHITECTURE_DIAGRAMS.md)** - Architecture deep dive
 - **[musicPlayerSystem/MusicPlayerApplication/docs/SEQUENCE_DIAGRAMS.md](musicPlayerSystem/MusicPlayerApplication/docs/SEQUENCE_DIAGRAMS.md)** - Detailed interactions
@@ -365,27 +458,30 @@ Playing Chaiyya Chaiyya
 ### After studying these projects, you will understand:
 
 1. **Structural Patterns**
-   - How to build complex hierarchies elegantly
+   - How to build complex hierarchies elegantly (Composite)
    - Adapter pattern for integration
    - Facade pattern for simplification
 
-2. **Creational Patterns**
-   - Singleton instantiation and thread safety
-   - Factory pattern for object creation
-
-3. **Behavioral Patterns**
+2. **Behavioral Patterns**
+   - Template method pattern for algorithm structure
    - Strategy pattern for algorithm selection
    - Runtime behavior modification
+
+3. **Creational Patterns**
+   - Singleton instantiation and thread safety
+   - Factory pattern for object creation
 
 4. **Architecture**
    - Separation of concerns
    - Component interaction
    - System design decisions
+   - Algorithm structuring
 
 5. **Best Practices**
    - SOLID principles
    - Code maintainability
    - Extensibility patterns
+   - Template method for consistent workflows
 
 ---
 
@@ -478,18 +574,18 @@ See detailed diagrams and explanations in:
 
 ## 📝 Project Comparison Matrix
 
-| Aspect | Composite Pattern | Music Player System |
-|--------|------------------|---------------------|
-| **Focus** | Structural pattern | Multiple patterns |
-| **Complexity** | Beginner-friendly | Intermediate-Advanced |
-| **Main Pattern** | Composite | Singleton + Strategy + Adapter + Facade + Factory |
-| **Key Learning** | Tree structures, recursive operations | Full system design, pattern coordination |
-| **Lines of Code** | ~150 | ~2000+ |
-| **Classes** | 3 core | 25+ |
-| **Interfaces** | 1 | 4+ |
-| **Real-world Use** | File systems, UI hierarchies | Music/streaming apps, audio systems |
-| **Difficulty** | ⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **Learning Time** | 30 minutes | 2-3 hours |
+| Aspect | Composite Pattern | Template Method | Music Player System |
+|--------|------------------|------------------|---------------------|
+| **Focus** | Structural pattern | Behavioral pattern | Multiple patterns |
+| **Complexity** | Beginner-friendly | Beginner-Intermediate | Intermediate-Advanced |
+| **Main Pattern** | Composite | Template Method | Singleton + Strategy + Adapter + Facade + Factory |
+| **Key Learning** | Tree structures, recursive operations | Algorithm structure, code reuse | Full system design, pattern coordination |
+| **Lines of Code** | ~150 | ~100 | ~2000+ |
+| **Classes** | 3 core | 3 core | 25+ |
+| **Interfaces** | 1 | 1 | 4+ |
+| **Real-world Use** | File systems, UI hierarchies | ML pipelines, test frameworks | Music/streaming apps, audio systems |
+| **Difficulty** | ⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Learning Time** | 30 minutes | 30-45 minutes | 2-3 hours |
 
 ---
 
@@ -503,6 +599,15 @@ See detailed diagrams and explanations in:
 ✅ Recognize real-world applications
 ✅ Build elegant part-whole hierarchies
 
+### After studying Template Method Pattern:
+✅ Understand behavioral patterns and algorithm structuring
+✅ Define reusable algorithm skeletons
+✅ Implement abstract and concrete methods effectively
+✅ Know when to use final and abstract keywords
+✅ Avoid code duplication in similar algorithms
+✅ Create extensible frameworks
+✅ Master the difference between inheritance and composition
+
 ### After studying Music Player System:
 ✅ Master multiple design patterns and their interactions
 ✅ Design complex systems with clear architecture
@@ -515,10 +620,11 @@ See detailed diagrams and explanations in:
 ✅ Manage complex component interactions
 
 ### Combined Learning Path:
-1. **Composite Pattern** (30 min) → Understand single pattern in isolation
-2. **Music Player System** (2-3 hours) → See patterns working together
-3. **Architecture Patterns** → Learn how to coordinate multiple patterns
-4. **System Design** → Apply learnings to real-world problems
+1. **Composite Pattern** (30 min) → Understand structural patterns and tree composition
+2. **Template Method Pattern** (30-45 min) → Learn behavioral patterns and algorithm structure
+3. **Music Player System** (2-3 hours) → See multiple patterns working together
+4. **Advanced Architecture** → Learn how to coordinate complex patterns
+5. **System Design** → Apply learnings to real-world problems
 
 ---
 
@@ -577,6 +683,15 @@ See detailed diagrams and explanations in:
 | [composite_pattern/filesystem/File.java](composite_pattern/filesystem/File.java) | Leaf component |
 | [composite_pattern/filesystem/Folder.java](composite_pattern/filesystem/Folder.java) | Composite component |
 
+### Template Method Pattern
+| File | Purpose |
+|------|---------|
+| [templateMethodPattern/README.md](templateMethodPattern/README.md) | Template method pattern with UML and sequence diagrams |
+| [templateMethodPattern/main.java](templateMethodPattern/main.java) | Runnable demo with two trainer types |
+| [templateMethodPattern/trainers/ModelTrainer.java](templateMethodPattern/trainers/ModelTrainer.java) | Abstract base class with template method |
+| [templateMethodPattern/trainers/NeuralNetworkTrainer.java](templateMethodPattern/trainers/NeuralNetworkTrainer.java) | Neural network specific implementation |
+| [templateMethodPattern/trainers/DecisionTreeTrainer.java](templateMethodPattern/trainers/DecisionTreeTrainer.java) | Decision tree specific implementation |
+
 ### Music Player System
 | File | Purpose |
 |------|---------|
@@ -591,6 +706,7 @@ See detailed diagrams and explanations in:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.2 | April 18, 2026 | Added Template Method Pattern (ML training pipeline) with UML and sequence diagrams |
 | 1.1 | April 18, 2026 | Enhanced documentation with detailed output, quick start guide, and comprehensive diagram references |
 | 1.0 | April 18, 2026 | Initial implementation with comprehensive documentation and all design patterns |
 
@@ -624,5 +740,5 @@ Educational material - Feel free to use for learning purposes.
 ---
 
 **Last Updated**: April 18, 2026
-**Version**: 1.1
-**Documentation Status**: ✅ Complete with READMEs and Diagrams
+**Version**: 1.2
+**Documentation Status**: ✅ Complete with 3 Design Pattern Projects and Comprehensive Diagrams
