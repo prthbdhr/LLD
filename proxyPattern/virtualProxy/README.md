@@ -1,9 +1,11 @@
 # Virtual Proxy Pattern
 
 ## Overview
+
 The **Virtual Proxy Pattern** is a structural design pattern that delays the creation of an expensive object until it's actually needed (lazy loading). The proxy acts as a placeholder for the real object and loads it only when required.
 
 ## Why Virtual Proxy?
+
 - **Performance**: Avoids loading heavy objects until they're actually used
 - **Memory Efficiency**: Objects are created on-demand, not upfront
 - **Transparent**: Client code doesn't need to know about lazy loading logic
@@ -20,9 +22,9 @@ The **Virtual Proxy Pattern** is a structural design pattern that delays the cre
 │                          <<interface>>                              │
 │                            IImage                                   │
 ├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
+│                                                                     │
 │  + display() : void                                                 │
-│                                                                      │
+│                                                                     │
 └──────────────────────────┬──────────────────────────────────────────┘
                            △
                            │
@@ -65,11 +67,11 @@ The **Virtual Proxy Pattern** is a structural design pattern that delays the cre
 ```
 Client          ImageProxy        RealImage
   │                 │                 │
-  │─ new ImageProxy("photo1.jpg")─→  │
+  │─ new ImageProxy("photo1.jpg")─→   │
   │ (filename stored, realImage=null) │
   │◄─────────────── return ───────────┤
   │                 │                 │
-  │─ new ImageProxy("photo2.jpg")─→  │
+  │─ new ImageProxy("photo2.jpg")─→   │
   │ (filename stored, realImage=null) │
   │◄─────────────── return ───────────┤
   │                 │                 │
@@ -154,20 +156,24 @@ Step 3: Subsequent display calls on image1
 ## Key Benefits
 
 ✅ **Lazy Loading**
-   - Heavy objects created only when needed
-   - Reduces startup time
+
+- Heavy objects created only when needed
+- Reduces startup time
 
 ✅ **Caching**
-   - Once loaded, object is reused
-   - Eliminates redundant loading
+
+- Once loaded, object is reused
+- Eliminates redundant loading
 
 ✅ **Transparent Access**
-   - Client code uses same IImage interface
-   - Doesn't know about proxy complexity
+
+- Client code uses same IImage interface
+- Doesn't know about proxy complexity
 
 ✅ **Resource Efficiency**
-   - Memory allocated on-demand
-   - Perfect for large collections of expensive objects
+
+- Memory allocated on-demand
+- Perfect for large collections of expensive objects
 
 ---
 
@@ -208,6 +214,7 @@ public void display() {
 ```
 
 This simple check implements the entire virtual proxy pattern:
+
 1. **First call**: realImage is null → Create it (lazy load)
 2. **Later calls**: realImage exists → Use cached instance
 3. **Client**: Doesn't care about the difference
