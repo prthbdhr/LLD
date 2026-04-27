@@ -1055,8 +1055,17 @@ See detailed diagrams and explanations in:
 | [proxyPattern/virtualProxy/image/IImage.java](proxyPattern/virtualProxy/image/IImage.java) | Subject interface |
 | [proxyPattern/virtualProxy/image/RealImage.java](proxyPattern/virtualProxy/image/RealImage.java) | Real expensive object |
 | [proxyPattern/virtualProxy/image/ImageProxy.java](proxyPattern/virtualProxy/image/ImageProxy.java) | Virtual proxy with lazy loading |
+| [proxyPattern/protectionProxy/README.md](proxyPattern/protectionProxy/README.md) | Protection proxy pattern with access control |
 | [proxyPattern/protectionProxy/Main.java](proxyPattern/protectionProxy/Main.java) | Protection proxy demo |
-| [proxyPattern/remoteProxy/Main.java](proxyPattern/remoteProxy/Main.java) | Remote proxy demo |
+| [proxyPattern/protectionProxy/ISensitiveDataService.java](proxyPattern/protectionProxy/ISensitiveDataService.java) | Subject interface for sensitive operations |
+| [proxyPattern/protectionProxy/RealSensitiveDataService.java](proxyPattern/protectionProxy/RealSensitiveDataService.java) | Real service with sensitive data |
+| [proxyPattern/protectionProxy/SensitiveDataServiceProxy.java](proxyPattern/protectionProxy/SensitiveDataServiceProxy.java) | Protection proxy with role-based authorization |
+| [proxyPattern/remote/README.md](proxyPattern/remote/README.md) | Remote proxy pattern with network transparency |
+| [proxyPattern/remote/Main.java](proxyPattern/remote/Main.java) | Remote proxy demo |
+| [proxyPattern/remote/Data/IDataService.java](proxyPattern/remote/Data/IDataService.java) | Subject interface for data operations |
+| [proxyPattern/remote/Data/Data.java](proxyPattern/remote/Data/Data.java) | Data transfer object |
+| [proxyPattern/remote/Data/RealDataService.java](proxyPattern/remote/Data/RealDataService.java) | Real remote service with network simulation |
+| [proxyPattern/remote/Data/DataServiceProxy.java](proxyPattern/remote/Data/DataServiceProxy.java) | Remote proxy with connection management |
 
 ### Template Method Pattern
 
@@ -1082,7 +1091,10 @@ See detailed diagrams and explanations in:
 ## Revision History
 
 | Version | Date | Changes |
-|---------|------|---------|| 1.3 | April 23, 2026 | Integrated detailed inner README documentation - added Proxy Pattern build instructions, comprehensive benefits/principles for all patterns, real-world scenarios || 1.2 | April 18, 2026 | Added Template Method Pattern (ML training pipeline) with UML and sequence diagrams |
+|---------|------|---------|
+| 1.4 | April 27, 2026 | Complete Proxy Pattern implementations - Added Protection Proxy (access control) and Remote Proxy (network transparency) with comprehensive documentation, UML diagrams, and working examples |
+| 1.3 | April 23, 2026 | Integrated detailed inner README documentation - added Proxy Pattern build instructions, comprehensive benefits/principles for all patterns, real-world scenarios |
+| 1.2 | April 18, 2026 | Added Template Method Pattern (ML training pipeline) with UML and sequence diagrams |
 | 1.1 | April 18, 2026 | Enhanced documentation with detailed output, quick start guide, and comprehensive diagram references |
 | 1.0 | April 18, 2026 | Initial implementation with comprehensive documentation and all design patterns |
 
@@ -1116,6 +1128,6 @@ Educational material - Feel free to use for learning purposes.
 
 ---
 
-**Last Updated**: April 23, 2026
-**Version**: 1.3
+**Last Updated**: April 27, 2026
+**Version**: 1.4
 **Documentation Status**: ✅ Complete with 4 Design Pattern Projects, Comprehensive Diagrams, and Integrated Inner README Details
