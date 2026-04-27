@@ -138,17 +138,17 @@ Different ML models (Neural Networks, Decision Trees, Random Forests) follow the
 
 ---
 
-### 3. Proxy Pattern - Image Loading System
+### 3. Proxy Pattern - Multiple Proxy Types Implementation
 
 **Location**: `proxyPattern/`
 
-A demonstration of the **Proxy Design Pattern** through multiple proxy types for controlling access to expensive objects. The proxy acts as a placeholder or surrogate for another object to control access to it.
+A comprehensive demonstration of the **Proxy Design Pattern** through three different proxy types for controlling access to objects. The proxy acts as a placeholder or surrogate for another object to control access to it.
 
 #### What it demonstrates
 
 - ✅ Virtual Proxy pattern for lazy loading and deferred initialization
 - ✅ Protection Proxy pattern for access control and security
-- ✅ Remote Proxy pattern for remote resource access
+- ✅ Remote Proxy pattern for remote resource access and network transparency
 - ✅ Deferring expensive object creation until needed
 - ✅ Transparent delegation through common interfaces
 - ✅ Caching and resource management strategies
@@ -165,15 +165,19 @@ A demonstration of the **Proxy Design Pattern** through multiple proxy types for
 
 **Protection Proxy (Access Control)**:
 
-- Controls access to sensitive resources
-- Validates permissions before delegating to real object
-- Useful for restricting who can access what
+- `ISensitiveDataService` - Subject interface for sensitive operations
+- `RealSensitiveDataService` - Real service handling sensitive data
+- `SensitiveDataServiceProxy` - Proxy controlling access based on user roles
+- **How it works**: Checks user permissions before delegating to real service
+- **Security**: Only authorized roles (ADMIN, MANAGER) can access sensitive data
 
 **Remote Proxy (Remote Resources)**:
 
-- Represents remote objects locally
-- Handles network communication transparently
-- Useful for distributed systems
+- `IDataService` - Subject interface for data operations
+- `RealDataService` - Real remote service (simulates network latency)
+- `DataServiceProxy` - Proxy managing remote connections and caching
+- **How it works**: Lazy connection establishment, reuses connections for efficiency
+- **Transparency**: Remote objects appear local to client code
 
 #### Key Benefits
 
@@ -334,8 +338,8 @@ app.playAllTracksInPlaylist();
 | **Composite** | Compose objects into tree structures | composite_pattern/ | Treat parts and wholes uniformly |
 | **Template Method** | Define algorithm skeleton | templateMethodPattern/ | Code reuse, enforced structure |
 | **Virtual Proxy** | Lazy loading of expensive objects | proxyPattern/virtualProxy/ | Deferred creation, performance |
-| **Protection Proxy** | Control access to resources | proxyPattern/protectionProxy/ | Access control, security |
-| **Remote Proxy** | Represent remote objects | proxyPattern/remoteProxy/ | Distributed systems, transparency |
+| **Protection Proxy** | Control access to resources | proxyPattern/protectedProxy/ | Access control, security |
+| **Remote Proxy** | Represent remote objects | proxyPattern/remote/ | Distributed systems, transparency |
 | **Singleton** | Ensure single instance | musicPlayerSystem/ | Centralized access, thread-safe |
 | **Strategy** | Encapsulate algorithms | musicPlayerSystem/ | Runtime algorithm selection |
 | **Adapter** | Unify incompatible interfaces | musicPlayerSystem/ | API integration, loose coupling |
@@ -381,9 +385,20 @@ LLD/
 │   │       ├── RealImage.java             # Real heavy object
 │   │       └── ImageProxy.java            # Virtual proxy (lazy loading)
 │   ├── protectionProxy/
-│   │   └── Main.java                      # Protection proxy demo
-│   └── remoteProxy/
-│       └── Main.java                      # Remote proxy demo
+│   │   ├── Main.java                      # Entry point for protection proxy demo
+│   │   ├── README.md                      # Protection proxy pattern documentation
+│   │   ├── ISensitiveDataService.java     # Subject interface
+│   │   ├── RealSensitiveDataService.java  # Real service with sensitive data
+│   │   └── SensitiveDataServiceProxy.java # Protection proxy (access control)
+│   └── remote/
+│       ├── Main.java                      # Entry point for remote proxy demo
+│       ├── README.md                      # Remote proxy pattern documentation
+│       ├── Data/
+│       │   ├── IDataService.java          # Subject interface
+│       │   ├── Data.java                  # Data transfer object
+│       │   ├── RealDataService.java       # Real remote service
+│       │   └── DataServiceProxy.java      # Remote proxy (connection management)
+│       └── Data.java                      # (duplicate - can be removed)
 │
 └── musicPlayerSystem/
     └── MusicPlayerApplication/
@@ -539,7 +554,92 @@ java proxyPattern.virtualProxy.Main
 - Caching: Subsequent calls use cached instance
 - Transparent: Client sees same interface (IImage) for both proxy and real object
 
-### Template Method Pattern
+### Proxy Pattern - Protection Proxy (Access Control)
+
+```bash
+# Navigate to LLD directory
+cd /Users/tyrant369/Tyrant369-Macbook-Air-M3/Study/Code/system_design/lld/LLD
+
+# Compile protection proxy
+javac proxyPattern/protectionProxy/Main.java \
+       proxyPattern/protectionProxy/ISensitiveDataService.java \
+       proxyPattern/protectionProxy/RealSensitiveDataService.java \
+       proxyPattern/protectionProxy/SensitiveDataServiceProxy.java
+
+# Run
+java proxyPattern.protectionProxy.Main
+```
+
+**Expected Output:**
+
+```
+=============================================
+Testing Protection Proxy Pattern
+=============================================
+Attempting access with ADMIN role:
+[SensitiveDataServiceProxy] Access granted for role: ADMIN
+[RealSensitiveDataService] Accessing sensitive data for user with role: ADMIN
+Sensitive data: Confidential information...
+---------------------------------------------
+Attempting access with MANAGER role:
+[SensitiveDataServiceProxy] Access granted for role: MANAGER
+[RealSensitiveDataService] Accessing sensitive data for user with role: MANAGER
+Sensitive data: Confidential information...
+---------------------------------------------
+Attempting access with USER role:
+[SensitiveDataServiceProxy] Access denied for role: USER
+Exception: Unauthorized access attempt by role: USER
+=============================================
+```
+
+**What this demonstrates:**
+
+- Role-based access control through proxy
+- Authorized access (ADMIN, MANAGER) delegates to real service
+- Unauthorized access (USER) throws SecurityException
+- Proxy acts as security gatekeeper
+- Real service only accessed when permissions validated
+
+### Proxy Pattern - Remote Proxy (Network Transparency)
+
+```bash
+# Navigate to LLD directory
+cd /Users/tyrant369/Tyrant369-Macbook-Air-M3/Study/Code/system_design/lld/LLD
+
+# Compile remote proxy
+javac proxyPattern/remote/Main.java \
+       proxyPattern/remote/Data/IDataService.java \
+       proxyPattern/remote/Data/Data.java \
+       proxyPattern/remote/Data/RealDataService.java \
+       proxyPattern/remote/Data/DataServiceProxy.java
+
+# Run
+java proxyPattern.remote.Main
+```
+
+**Expected Output:**
+
+```
+=============================================
+First call to fetchData:
+[DataServiceProxy] Initializing RealDataService...
+[RealDataService] Initialized (simulating remote setup)
+=============================================
+Second call to fetchData:
+[DataServiceProxy] Using cached RealDataService instance.
+=============================================
+Third call to fetchData:
+[DataServiceProxy] Using cached RealDataService instance.
+=============================================
+```
+
+**What this demonstrates:**
+
+- Lazy connection establishment on first call
+- Network latency simulation (5-second delay)
+- Connection reuse on subsequent calls
+- Transparent remote access through local interface
+- Caching prevents redundant remote connections
 
 ```bash
 # Navigate to LLD directory
@@ -643,20 +743,28 @@ Playing Chaiyya Chaiyya
 
 ### To understand the Proxy Pattern
 
-1. Read [`proxyPattern/virtualProxy/README.md`](proxyPattern/virtualProxy/README.md) - Virtual proxy pattern with UML and sequence diagrams
-2. Study the 3 sequence diagrams:
-   - Creating proxy objects (no loading yet)
-   - First display() call (lazy loads RealImage)
-   - Subsequent calls (reuses cached instance)
-3. Review the UML class diagram showing interface and proxy relationships
-4. Run the virtual proxy demo to see lazy loading in action
-   - Notice "Loading" only appears on first call
-   - Notice no "Loading" message on subsequent calls (cached)
-5. Examine the code:
-   - `proxyPattern/virtualProxy/Main.java` - Entry point with demo
-   - `proxyPattern/virtualProxy/image/IImage.java` - Subject interface
-   - `proxyPattern/virtualProxy/image/RealImage.java` - Real expensive object
-   - `proxyPattern/virtualProxy/image/ImageProxy.java` - Virtual proxy implementation (lazy loading)
+1. **Virtual Proxy (Lazy Loading)**:
+   - Read [`proxyPattern/virtualProxy/README.md`](proxyPattern/virtualProxy/README.md) - Virtual proxy pattern with UML and sequence diagrams
+   - Study the 3 sequence diagrams showing lazy loading behavior
+   - Run the virtual proxy demo to see objects created on-demand
+   - Notice "Loading" only appears on first call, cached on subsequent calls
+
+2. **Protection Proxy (Access Control)**:
+   - Read [`proxyPattern/protectedProxy/README.md`](proxyPattern/protectedProxy/README.md) - Protection proxy pattern documentation
+   - Study the sequence diagrams for authorized vs unauthorized access
+   - Run the protection proxy demo to see role-based security in action
+   - Observe how proxy prevents unauthorized access to sensitive data
+
+3. **Remote Proxy (Network Transparency)**:
+   - Read [`proxyPattern/remote/README.md`](proxyPattern/remote/README.md) - Remote proxy pattern documentation
+   - Study the sequence diagrams showing connection management
+   - Run the remote proxy demo to see lazy connection establishment
+   - Notice the 5-second delay on first call (network simulation) and instant subsequent calls
+
+4. **Examine the code structures**:
+   - Virtual Proxy: `proxyPattern/virtualProxy/image/` - IImage, RealImage, ImageProxy
+   - Protection Proxy: `proxyPattern/protectedProxy/` - ISensitiveDataService, RealSensitiveDataService, SensitiveDataServiceProxy
+   - Remote Proxy: `proxyPattern/remote/Data/` - IDataService, Data, RealDataService, DataServiceProxy
 
 ### To understand the Music Player System
 
@@ -672,6 +780,8 @@ Playing Chaiyya Chaiyya
 - **[composite_pattern/README.md](composite_pattern/README.md)** - Composite pattern details
 - **[templateMethodPattern/README.md](templateMethodPattern/README.md)** - Template method pattern with UML and sequence diagrams
 - **[proxyPattern/virtualProxy/README.md](proxyPattern/virtualProxy/README.md)** - Virtual proxy pattern with UML and sequence diagrams
+- **[proxyPattern/protectedProxy/README.md](proxyPattern/protectedProxy/README.md)** - Protection proxy pattern with access control
+- **[proxyPattern/remote/README.md](proxyPattern/remote/README.md)** - Remote proxy pattern with network transparency
 - **[musicPlayerSystem/MusicPlayerApplication/README.md](musicPlayerSystem/MusicPlayerApplication/README.md)** - Music player system
 - **[musicPlayerSystem/MusicPlayerApplication/docs/ARCHITECTURE_DIAGRAMS.md](musicPlayerSystem/MusicPlayerApplication/docs/ARCHITECTURE_DIAGRAMS.md)** - Architecture deep dive
 - **[musicPlayerSystem/MusicPlayerApplication/docs/SEQUENCE_DIAGRAMS.md](musicPlayerSystem/MusicPlayerApplication/docs/SEQUENCE_DIAGRAMS.md)** - Detailed interactions
