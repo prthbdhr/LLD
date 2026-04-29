@@ -23,7 +23,7 @@ The **Protection Proxy Pattern** is a structural design pattern that controls ac
 │                     ISensitiveDataService                           │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  + accessData(userRole: String) : void                             │
+│  + accessData(userRole: String) : void                              │
 │                                                                     │
 └──────────────────────────┬──────────────────────────────────────────┘
                            △
@@ -32,7 +32,7 @@ The **Protection Proxy Pattern** is a structural design pattern that controls ac
                 ┌──────────┴──────────┐
                 │                     │
     ┌───────────────────────┐  ┌──────────────────────┐
-    │ RealSensitiveData...  │  │ SensitiveDataSer... │
+    │ RealSensitiveData...  │  │ SensitiveDataSer...  │
     ├───────────────────────┤  ├──────────────────────┤
     │                       │  │ - realService: Re... │
     │                       │  │ - allowedRoles: S... │
