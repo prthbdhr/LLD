@@ -358,6 +358,7 @@ An ATM system that dispenses cash in multiple denominations:
 #### Key Components
 
 **Handlers:**
+
 - `IMoneyHandler` - Abstract base with ReentrantLock (not synchronized)
 - `ThousandHandler` - Handles ₹1000 notes
 - `FiveHundredHandler` - Handles ₹500 notes
@@ -365,9 +366,11 @@ An ATM system that dispenses cash in multiple denominations:
 - `HundredHandler` - Handles ₹100 notes
 
 **Models:**
+
 - `CurrencyDenomination` - Type-safe enum for denominations
 
 **Demos:**
+
 - `COR.java` - Basic chain demonstration
 - `ThreadSafeDemo.java` - 4 concurrent users withdrawing simultaneously
 - `AdvancedReentrantLockDemo.java` - Fair lock ordering with FIFO thread queueing
@@ -385,15 +388,15 @@ An ATM system that dispenses cash in multiple denominations:
 
 #### ReentrantLock vs Synchronized
 
-| Feature | Synchronized | ReentrantLock |
-|---------|-------------|---------------|
-| **Basic Locking** | ✓ | ✓ |
-| **Fair Ordering** | ✗ | ✓ (optional) |
-| **tryLock()** | ✗ | ✓ |
-| **tryLock(timeout)** | ✗ | ✓ |
-| **Interruptible** | ✗ | ✓ |
-| **Performance** | Good | Better |
-| **Complexity** | Simple | Moderate |
+| Feature              | Synchronized | ReentrantLock |
+|----------------------|--------------|---------------|
+| **Basic Locking**    | ✓            | ✓             |
+| **Fair Ordering**    | ✗            | ✓ (optional)  |
+| **tryLock()**        | ✗            | ✓             |
+| **tryLock(timeout)** | ✗            | ✓             |
+| **Interruptible**    | ✗            | ✓             |
+| **Performance**      | Good         | Better        |
+| **Complexity**       | Simple       | Moderate      |
 
 #### Real-World Use Cases
 
@@ -416,20 +419,20 @@ An ATM system that dispenses cash in multiple denominations:
 
 ### Patterns Used Across Projects
 
-| Pattern              | Purpose                              | Location                     | Benefits                          |
-|----------------------|--------------------------------------|------------------------------|-----------------------------------|
-| **Composite**        | Compose objects into tree structures | composite_pattern/           | Treat parts and wholes uniformly  |
-| **Template Method**  | Define algorithm skeleton            | templateMethodPattern/       | Code reuse, enforced structure    |
-| **Virtual Proxy**    | Lazy loading of expensive objects    | proxyPattern/virtualProxy/   | Deferred creation, performance    |
-| **Protection Proxy** | Control access to resources          | proxyPattern/protectedProxy/ | Access control, security          |
-| **Remote Proxy**     | Represent remote objects             | proxyPattern/remote/         | Distributed systems, transparency |
-| **Singleton**        | Ensure single instance               | musicPlayerSystem/           | Centralized access, thread-safe   |
-| **Strategy**         | Encapsulate algorithms               | musicPlayerSystem/           | Runtime algorithm selection       |
-| **Adapter**          | Unify incompatible interfaces        | musicPlayerSystem/           | API integration, loose coupling   |
-| **Facade**           | Simplify complex systems             | musicPlayerSystem/           | Cleaner client interface          |
-| **Factory**          | Decouple object creation             | musicPlayerSystem/           | Flexible instantiation            |
-| **Chain of Responsibility** | Pass requests along a handler chain | chain_of_responsibility/     | Decouple sender from receiver     |
-| **Chain of Responsibility** | Pass requests along a handler chain | chain_of_responsibility/     | Decouple sender from receiver     |
+| Pattern                     | Purpose                              | Location                     | Benefits                          |
+|-----------------------------|--------------------------------------|------------------------------|-----------------------------------|
+| **Composite**               | Compose objects into tree structures | composite_pattern/           | Treat parts and wholes uniformly  |
+| **Template Method**         | Define algorithm skeleton            | templateMethodPattern/       | Code reuse, enforced structure    |
+| **Virtual Proxy**           | Lazy loading of expensive objects    | proxyPattern/virtualProxy/   | Deferred creation, performance    |
+| **Protection Proxy**        | Control access to resources          | proxyPattern/protectedProxy/ | Access control, security          |
+| **Remote Proxy**            | Represent remote objects             | proxyPattern/remote/         | Distributed systems, transparency |
+| **Singleton**               | Ensure single instance               | musicPlayerSystem/           | Centralized access, thread-safe   |
+| **Strategy**                | Encapsulate algorithms               | musicPlayerSystem/           | Runtime algorithm selection       |
+| **Adapter**                 | Unify incompatible interfaces        | musicPlayerSystem/           | API integration, loose coupling   |
+| **Facade**                  | Simplify complex systems             | musicPlayerSystem/           | Cleaner client interface          |
+| **Factory**                 | Decouple object creation             | musicPlayerSystem/           | Flexible instantiation            |
+| **Chain of Responsibility** | Pass requests along a handler chain  | chain_of_responsibility/     | Decouple sender from receiver     |
+| **Chain of Responsibility** | Pass requests along a handler chain  | chain_of_responsibility/     | Decouple sender from receiver     |
 
 ### SOLID Principles Applied
 

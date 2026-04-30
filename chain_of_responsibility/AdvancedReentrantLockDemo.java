@@ -1,5 +1,6 @@
+package chain_of_responsibility;
+
 import chain_of_responsibility.handlers.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Advanced ReentrantLock Demo with Fair Lock Strategy

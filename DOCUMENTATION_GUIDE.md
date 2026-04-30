@@ -11,6 +11,7 @@ Comprehensive README files and UML/Sequence diagrams have been created for the e
 ### 1. **Project-Level Documentation**
 
 #### [README.md](../README.md) - Main Project README
+
 - **Location**: `/LLD/README.md`
 - **Contents**:
   - Overview of all projects
@@ -27,6 +28,7 @@ Comprehensive README files and UML/Sequence diagrams have been created for the e
 ### 2. **Composite Pattern Documentation**
 
 #### [README.md](../../composite_pattern/README.md) - Composite Pattern
+
 - **Location**: `/LLD/composite_pattern/README.md`
 - **Contents**:
   - Pattern overview and benefits
@@ -38,6 +40,7 @@ Comprehensive README files and UML/Sequence diagrams have been created for the e
   - Design principles applied
 
 **Key Diagram**:
+
 ```
 IFileSystem (Interface)
     ├── File (Leaf)
@@ -49,6 +52,7 @@ IFileSystem (Interface)
 ### 3. **Music Player System Documentation**
 
 #### [README.md](../README.md) - Main Music Player Documentation
+
 - **Location**: `/LLD/musicPlayerSystem/MusicPlayerApplication/README.md`
 - **Contents**:
   - Complete system overview
@@ -65,6 +69,7 @@ IFileSystem (Interface)
   - Running instructions
 
 **Key Patterns**:
+
 - 🔒 Singleton Pattern
 - 📊 Strategy Pattern
 - 🔌 Adapter Pattern
@@ -76,6 +81,7 @@ IFileSystem (Interface)
 ### 4. **Architecture Deep Dive**
 
 #### [ARCHITECTURE_DIAGRAMS.md](../docs/ARCHITECTURE_DIAGRAMS.md) - Architecture Reference
+
 - **Location**: `/LLD/musicPlayerSystem/MusicPlayerApplication/docs/ARCHITECTURE_DIAGRAMS.md`
 - **Contents**:
   - **Complete UML Class Diagram** (Mermaid code block)
@@ -94,6 +100,7 @@ IFileSystem (Interface)
 ### 5. **Sequence Diagrams**
 
 #### [SEQUENCE_DIAGRAMS.md](../docs/SEQUENCE_DIAGRAMS.md) - Detailed Flows
+
 - **Location**: `/LLD/musicPlayerSystem/MusicPlayerApplication/docs/SEQUENCE_DIAGRAMS.md`
 - **Contents**:
   - **7 Complete Sequence Diagrams**:
@@ -147,19 +154,20 @@ LLD/
 
 ## 🎯 What Each Documentation Covers
 
-| Document | Best For | Key Content |
-|----------|----------|-------------|
-| Main README | Overview | Projects, patterns, structure |
-| Composite README | Simple pattern | Tree structures, composition |
-| Music Player README | System design | All patterns, architecture, UML |
-| Architecture | Technical depth | Components, dependencies, creation |
-| Sequences | Flow understanding | Interactions, timing, decisions |
+| Document            | Best For           | Key Content                        |
+|---------------------|--------------------|------------------------------------|
+| Main README         | Overview           | Projects, patterns, structure      |
+| Composite README    | Simple pattern     | Tree structures, composition       |
+| Music Player README | System design      | All patterns, architecture, UML    |
+| Architecture        | Technical depth    | Components, dependencies, creation |
+| Sequences           | Flow understanding | Interactions, timing, decisions    |
 
 ---
 
 ## 📈 UML Diagrams Included
 
 ### 1. Composite Pattern UML
+
 ```
 ┌─────────────────────┐
 │   IFileSystem       │
@@ -180,7 +188,9 @@ LLD/
 ```
 
 ### 2. Music Player UML
+
 **Complete class diagram in Mermaid format** showing:
+
 - All classes with attributes and methods
 - Relationships (associations, implementations)
 - Singleton patterns with -instance
@@ -190,6 +200,7 @@ LLD/
 - Device adaptors
 
 ### 3. Architecture Diagrams
+
 - Component diagram
 - Pattern application diagram
 - Interaction flow diagram
@@ -201,6 +212,7 @@ LLD/
 ## 🔄 Sequence Flow Examples
 
 ### Playing a Song Flow
+
 ```
 User → App → Facade → Engine → Device → Output
        ↓     ↓        ↓       ↓       ↓
@@ -209,6 +221,7 @@ User → App → Facade → Engine → Device → Output
 ```
 
 ### Device Connection Flow
+
 ```
 User → App → DeviceManager → Factory → Adapter → External API
        ↓     ↓               ↓         ↓         ↓
@@ -221,6 +234,7 @@ User → App → DeviceManager → Factory → Adapter → External API
 ## 💡 Key Insights from Documentation
 
 ### Design Patterns Used
+
 1. **Singleton** - One instance of critical components
 2. **Strategy** - Swap playback algorithms at runtime
 3. **Adapter** - Integrate different device APIs
@@ -228,6 +242,7 @@ User → App → DeviceManager → Factory → Adapter → External API
 5. **Factory** - Centralize object creation
 
 ### SOLID Principles
+
 - ✅ Single Responsibility - Each class has one job
 - ✅ Open/Closed - Extend without modifying
 - ✅ Liskov Substitution - Implementations are replaceable
@@ -235,6 +250,7 @@ User → App → DeviceManager → Factory → Adapter → External API
 - ✅ Dependency Inversion - Depend on abstractions
 
 ### Architecture Highlights
+
 - Clear separation of concerns
 - Flexible strategy selection
 - Easy device integration
@@ -246,6 +262,7 @@ User → App → DeviceManager → Factory → Adapter → External API
 ## 🚀 Usage Examples Included
 
 ### Composite Pattern
+
 ```java
 Folder root = new Folder("root", new ArrayList<>());
 root.add(new File("file.txt", 1));
@@ -255,6 +272,7 @@ System.out.println(root.getSize());  // Total size
 ```
 
 ### Music Player
+
 ```java
 MusicPlayerApplication app = MusicPlayerApplication.getInstance();
 app.createSongInLibrary("Song", "Artist", "/path");
@@ -270,6 +288,7 @@ app.playAllTracksInPlaylist();
 ## 📋 Features Documented
 
 ### Composite Pattern Features
+
 - File and folder creation
 - Directory listing
 - Tree display
@@ -278,6 +297,7 @@ app.playAllTracksInPlaylist();
 - Recursive operations
 
 ### Music Player Features
+
 - Song library management
 - Playlist creation
 - Multiple playback strategies
@@ -291,6 +311,7 @@ app.playAllTracksInPlaylist();
 ## 🔗 Cross References
 
 All documentation files link to each other:
+
 - Main README references specific subsystems
 - Composite README stands alone
 - Music Player README references architecture docs
@@ -302,6 +323,7 @@ All documentation files link to each other:
 ## 📝 Formatting & Diagrams
 
 ### Mermaid Diagrams Included
+
 - ✅ Class diagrams
 - ✅ Sequence diagrams
 - ✅ Component diagrams
@@ -309,11 +331,13 @@ All documentation files link to each other:
 - ✅ Graph diagrams
 
 ### ASCII Diagrams Included
+
 - ASCII UML for composite pattern
 - ASCII architecture diagrams
 - ASCII flow diagrams
 
 ### Code Examples
+
 - Complete, runnable examples
 - Edge case handling examples
 - Error handling patterns
@@ -324,16 +348,19 @@ All documentation files link to each other:
 ## 🎓 Learning Path
 
 ### Beginner
+
 1. Read [Main README](../README.md) - Get overview
 2. Study [Composite Pattern README](../../composite_pattern/README.md) - Simple example
 3. Review Composite diagrams - Understand pattern
 
 ### Intermediate
+
 1. Read [Music Player README](../README.md) - Full system overview
 2. Study [Architecture Diagrams](../docs/ARCHITECTURE_DIAGRAMS.md) - System structure
 3. Review UML class diagram - See all components
 
 ### Advanced
+
 1. Study [Sequence Diagrams](../docs/SEQUENCE_DIAGRAMS.md) - Detailed flows
 2. Trace code execution through diagrams
 3. Understand pattern interactions
@@ -344,6 +371,7 @@ All documentation files link to each other:
 ## ✅ Checklist of Included Content
 
 ### Documentation
+
 - [x] Project-level README
 - [x] Composite pattern README
 - [x] Music player system README
@@ -351,6 +379,7 @@ All documentation files link to each other:
 - [x] Sequence diagrams document
 
 ### Diagrams
+
 - [x] UML class diagram (Mermaid)
 - [x] Component diagram
 - [x] Architecture diagram
@@ -360,6 +389,7 @@ All documentation files link to each other:
 - [x] Dependency graph
 
 ### Content
+
 - [x] Design patterns explanation
 - [x] SOLID principles
 - [x] Usage examples
@@ -383,21 +413,22 @@ All documentation files link to each other:
 
 ## 🔍 Documentation Statistics
 
-| Metric | Count |
-|--------|-------|
-| Documentation files | 5 |
-| Total diagrams | 15+ |
-| Sequence diagrams | 7 |
-| Code examples | 20+ |
-| Classes documented | 25+ |
-| Design patterns | 5 (+ 6 in composite) |
-| SOLID principles | 5 |
+| Metric              | Count                |
+|---------------------|----------------------|
+| Documentation files | 5                    |
+| Total diagrams      | 15+                  |
+| Sequence diagrams   | 7                    |
+| Code examples       | 20+                  |
+| Classes documented  | 25+                  |
+| Design patterns     | 5 (+ 6 in composite) |
+| SOLID principles    | 5                    |
 
 ---
 
 ## 📦 Files Modification Summary
 
 ### Created/Updated Files
+
 1. `/LLD/README.md` - Main project README
 2. `/LLD/composite_pattern/README.md` - Composite pattern docs
 3. `/LLD/musicPlayerSystem/MusicPlayerApplication/README.md` - Music player docs

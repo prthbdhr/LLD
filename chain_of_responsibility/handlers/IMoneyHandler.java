@@ -2,7 +2,7 @@ package chain_of_responsibility.handlers;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-abstract class IMoneyHandler {
+public abstract class IMoneyHandler {
 
     protected volatile IMoneyHandler nextHandler;
     protected final ReentrantLock lock = new ReentrantLock();

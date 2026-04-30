@@ -1,3 +1,5 @@
+package chain_of_responsibility;
+
 import chain_of_responsibility.handlers.*;
 
 /**
